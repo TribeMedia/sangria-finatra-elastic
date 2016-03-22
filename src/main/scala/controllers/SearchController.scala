@@ -11,8 +11,9 @@ import org.json4s.native.JsonMethods._
 import sangria.execution.Executor
 import sangria.parser.QueryParser
 import services.ElasticSearchService
-import scala.concurrent.ExecutionContext.Implicits.global
+import views.IndexView
 
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Await
 import scala.concurrent.duration._
 import scala.util.{Failure, Success}
@@ -29,11 +30,11 @@ class SearchController@Inject()(searchService: ElasticSearchService)() extends C
     schema = SchemaDefinition.CustomerSchema,
     userContext = searchService)
 
-  get("/customers") { request: Request =>
-
+  get("/index") { request: Request =>
+    IndexView()
   }
 
-  get("/api/books") { request: Request =>
+  get("/api/customer") { request: Request =>
     val reqJson = request.getParam("query")
 
     QueryParser.parse(reqJson) match {
@@ -46,7 +47,7 @@ class SearchController@Inject()(searchService: ElasticSearchService)() extends C
     }
   }
 
-  post("/api/books") { request: Request =>
+  post("/api/customers") { request: Request =>
     val reqJson = parse(request.getContentString)
     val JString(mutation) = reqJson \ "mutation"
 

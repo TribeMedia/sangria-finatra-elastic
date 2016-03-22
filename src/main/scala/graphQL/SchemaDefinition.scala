@@ -48,10 +48,10 @@ object SchemaDefinition {
       arguments = LastNameArg :: FirstNameArg :: SSNArg :: Nil,
       resolve = ctx => ctx.ctx.addCustomer(
         CustomerCreationModel(ctx arg LastNameArg, ctx arg FirstNameArg, ctx arg SSNArg))),
-    Field("updateBook", OptionType(CustomerType),
+    Field("updateCustomer", OptionType(CustomerType),
       arguments = ID :: LastNameArg :: FirstNameArg :: SSNArg :: Nil,
       resolve = ctx => ctx.ctx.updateCustomer(Customer(ctx arg ID, ctx arg LastNameArg, ctx arg FirstNameArg, ctx arg SSNArg))),
-    Field("deleteBook", OptionType(IDType),
+    Field("deleteCustomer", OptionType(IDType),
       arguments = ID :: Nil,
       resolve = ctx => ctx.ctx.deleteCustomer(ctx arg ID))
   ))
