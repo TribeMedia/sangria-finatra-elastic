@@ -13,8 +13,8 @@ lazy val versions = new {
   val logback = "1.1.3"
   var json4s = "3.3.0"
   var sangriaVersion = "0.4.3"
-  val elastic4s = "1.7.4"
-  val elastic4sjackson = "1.7.4"
+  val elastic4s = "2.2.0"
+  val elastic4sjackson = "2.2.0"
   val mustache = "0.9.1"
 }
 

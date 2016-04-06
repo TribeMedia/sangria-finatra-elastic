@@ -8,7 +8,9 @@ import javax.inject.Singleton
 import com.google.inject.Provides
 import com.sksamuel.elastic4s.{ElasticClient, ElasticsearchClientUri}
 import com.twitter.inject.TwitterModule
-import org.elasticsearch.common.settings.ImmutableSettings
+import org.elasticsearch.common.settings.Settings
+import org.elasticsearch.client.transport.TransportClient
+//import org.elasticsearch.common.settings.ImmutableSettings
 
 object ElasticClientModule extends TwitterModule {
   private val host = flag("host", "localhost", "host name of ES")
@@ -22,7 +24,14 @@ object ElasticClientModule extends TwitterModule {
     //ElasticClient.remote(host(), port())
 
     val uri = ElasticsearchClientUri("elasticsearch://127.0.0.1:9300")
-    val settings = ImmutableSettings.settingsBuilder().put("cluster.name", "myClusterName").build()
-    ElasticClient.remote(settings,(uri))
+    val settings = Settings.settingsBuilder.put("cluster.name", "elasticsearch_gqadonis").build()
+
+
+    //val uri = ElasticsearchClientUri("elasticsearch://127.0.0.1:9300")
+    //val settings = ImmutableSettings.settingsBuilder().put("cluster.name", "elasticsearch_gqadonis").build()
+    //val settings = ImmutableSettings.settingsBuilder()
+      //.put("http.enabled", true).put("cluster.name", "elasticsearch_gqadonis").build()
+    //ElasticClient.remote(settings,(uri))
+    ElasticClient.transport(settings, uri)
   }
 }

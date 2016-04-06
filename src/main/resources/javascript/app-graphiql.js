@@ -99,7 +99,7 @@ $(function (global) {
                 "#\n" +
                 "# Press the run button above, or Cmd-Enter to execute the query, and the result\n" +
                 "# will appear in the pane to the right.\n\n" +
-                "query HeroAndFriends {\n  hero {\n    name\n    friends {\n      name\n    }\n  }\n}"
+                "query Quote {\n  quote {\n    quote\n  }\n}"
             }),
             elem
         );
